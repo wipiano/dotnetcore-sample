@@ -36,7 +36,7 @@
 
 ## Hello, World
 
-```csproj
+```csharp
 using System;
 
 namespace NetCoreSample.HelloWorld
