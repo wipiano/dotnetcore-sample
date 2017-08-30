@@ -10,6 +10,7 @@
 * フレームワーク依存の展開 (FDD: Framework-Dependent Deployments)
 * 自己完結型の展開(SCD: Self-Contained Deployments)
 * .NET Standard クラスライブラリの作成と利用
+* nuget パッケージの作成
 
 ## .NET Core
 
@@ -274,3 +275,26 @@ namespace NetCoreSample.MessagePackNet461
     }
 }
 ```
+
+## Nuget パッケージの作成
+
+### 設定
+
+プロジェクトのプロパティの　「パッケージ」 でパッケージ名など指定
+
+.csproj 直接編集でもいい
+
+```xml
+<PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Description>.NET Standard Sample Library</Description>
+    <Copyright>(c) hogehoge</Copyright>
+    <PackageLicenseUrl />
+    <RepositoryUrl>https://github.com/wipiano/dotnetcore-sample</RepositoryUrl>
+    <PackageReleaseNotes>first release</PackageReleaseNotes>
+</PropertyGroup>
+```
+
+### 発行
+
+プロジェクト右クリックしてパック。それだけ。

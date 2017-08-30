@@ -9,9 +9,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCoreSample.NetFrameworkC
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCoreSample.StandardLibrary", "NetCoreSample.StandardLibrary\NetCoreSample.StandardLibrary.csproj", "{B38173A2-4FA1-4F95-B339-401AFC988C3B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCoreSample.MessagePackCore", "NetCoreSample.MessagePackCore\NetCoreSample.MessagePackCore.csproj", "{FB114E52-511C-48EE-A4EE-ABE1E7715B43}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCoreSample.MessagePackCore", "NetCoreSample.MessagePackCore\NetCoreSample.MessagePackCore.csproj", "{FB114E52-511C-48EE-A4EE-ABE1E7715B43}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCoreSample.MessagePackNet461", "NetCoreSample.MessagePackNet461\NetCoreSample.MessagePackNet461.csproj", "{E3E7252B-871A-4573-8D94-A772DADCDB54}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5C5E0F16-4C39-49F2-95BE-AF14C9E0B787}"
+	ProjectSection(SolutionItems) = preProject
+		readme.md = readme.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

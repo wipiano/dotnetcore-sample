@@ -2,6 +2,11 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Description>.NET Standard Sample Library</Description>
+    <Copyright>(c) hogehoge</Copyright>
+    <PackageLicenseUrl />
+    <RepositoryUrl>https://github.com/wipiano/dotnetcore-sample</RepositoryUrl>
+    <PackageReleaseNotes>first release</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
