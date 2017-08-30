@@ -1,6 +1,6 @@
 # .NET Core 2.0 (1) - Hello, World
 
-[サンプルコード](https://github.com/wipiano/dotnetcore-sample)
+[サンプルコード](https://github.com/wipiano/dotnetcore-sample/tree/master/HelloWorld)
 
 ## やること
 
