@@ -36,6 +36,21 @@
 
 ## Hello, World
 
+```csproj
+using System;
+
+namespace NetCoreSample.HelloWorld
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Hello World!");
+        }
+    }
+}
+```
+
 ### プロジェクトの作成
 新規作成 -> プロジェクト -> Visual C# -> .NET Core -> コンソールアプリ (.NET Core) target framework は気にしない
 これで .NET Core 2.0 の ConsoleApp ができる
@@ -130,12 +145,12 @@ MessagePack は .NET Standard 対応済み
 .NET Standard 2.0 でつくる
 
 ```csharp
+using System;
+
+using MessagePack;
+
 namespace NetCoreSample.StandardLibrary
 {
-    using System;
-
-    using MessagePack;
-
     // MessagePack では immutable なオブジェクトも使える (public な setter を要求しない)
 
     [MessagePackObject]
@@ -159,7 +174,7 @@ namespace NetCoreSample.StandardLibrary
     }
 
 
-    public static class DeliveryScoreArraySerializer
+    public static class PersonArraySerializer
     {
         public static byte[] ToMessagePackBinary(this ImmutablePerson[] that) =>
             MessagePackSerializer.Serialize(that);
@@ -182,14 +197,13 @@ namespace NetCoreSample.StandardLibrary
 
 ```csharp
 using System;
+using System.Linq;
+using System.Text;
+
+using NetCoreSample.StandardLibrary;
 
 namespace NetCoreSample.MessagePackCore
 {
-    using System.Linq;
-    using System.Text;
-
-    using NetCoreSample.StandardLibrary;
-
     class Program
     {
         static void Main(string[] args)
@@ -207,8 +221,8 @@ namespace NetCoreSample.MessagePackCore
             Console.WriteLine("LZ4MessagePack: ");
             Console.WriteLine(Encoding.ASCII.GetChars(lz4Serialized));
 
-            var deserialized = DeliveryScoreArraySerializer.FromMessagePackBinary(serialized);
-            var lz4Deserialized = DeliveryScoreArraySerializer.FromLZ4MessagePackBinary(lz4Serialized);
+            var deserialized = PersonArraySerializer.FromMessagePackBinary(serialized);
+            var lz4Deserialized = PersonArraySerializer.FromLZ4MessagePackBinary(lz4Serialized);
 
             Console.WriteLine(ToJson(deserialized));
             Console.WriteLine(ToJson(lz4Deserialized));
@@ -225,14 +239,13 @@ namespace NetCoreSample.MessagePackCore
 
 ```csharp
 using System;
+using System.Linq;
+using System.Text;
+
+using NetCoreSample.StandardLibrary;
 
 namespace NetCoreSample.MessagePackNet461
 {
-    using System.Linq;
-    using System.Text;
-
-    using NetCoreSample.StandardLibrary;
-
     class Program
     {
         static void Main(string[] args)
@@ -250,8 +263,8 @@ namespace NetCoreSample.MessagePackNet461
             Console.WriteLine("LZ4MessagePack: ");
             Console.WriteLine(Encoding.ASCII.GetChars(lz4Serialized));
 
-            var deserialized = DeliveryScoreArraySerializer.FromMessagePackBinary(serialized);
-            var lz4Deserialized = DeliveryScoreArraySerializer.FromLZ4MessagePackBinary(lz4Serialized);
+            var deserialized = PersonArraySerializer.FromMessagePackBinary(serialized);
+            var lz4Deserialized = PersonArraySerializer.FromLZ4MessagePackBinary(lz4Serialized);
 
             Console.WriteLine(ToJson(deserialized));
             Console.WriteLine(ToJson(lz4Deserialized));
@@ -261,4 +274,3 @@ namespace NetCoreSample.MessagePackNet461
     }
 }
 ```
-
