@@ -22,7 +22,11 @@
   - ランタイムに依存しない実行ファイルを作れる
   - ランタイムのバージョンを気にせず新しいバージョンを使える
   - ランタイムのインストールが不要なので同一サーバ上に複数バージョンの .NET Core を使用するアプリケーションをデプロイできる
+  - デプロイするファイルサイズ自体は大きくなる
 * .NET Core 2.0 からは API がかなり増えて .NET Framework の dll を直接参照可能に (.NET Core で使えないものが含まれてるとダメだけど)
+* 一部サポートされてないものがある
+  - ASP.NET の WebForms
+  - WPF アプリ
 
 ## .NET Standard
 
@@ -30,10 +34,12 @@
 * クラスライブラリしか書けない
 * これで書かれていれば .NET Framework, .NET Core 両方から使える
 * 実際の実装は個々のフレームワーク(.NET Framework, .NET Core) におまかせ
-* .NET Framework にしかない機能 (Windows 依存とか)、 .NET Core にしかない機能もある
+* .NET Framework にしかない機能 (Windows 依存とか)、 .NET Core にしかない新機能両方ある
   - これらは含まれてない
 * とはいえよく使う API はひととおりそろってるので移行はラク
-* .NET Standard 2.0 は .NET Core 2.0, .NET Framework 4.6.1 以上をサポート
+* .NET Core 2.0 , .NET Framework 4.6.1 以上は .NET Standard 2.0 の API をフルでサポート 
+
+.NET Standard のバージョンについては https://github.com/dotnet/standard/blob/master/docs/versions.md
 
 ## Hello, World
 
@@ -53,6 +59,7 @@ namespace NetCoreSample.HelloWorld
 ```
 
 ### プロジェクトの作成
+
 新規作成 -> プロジェクト -> Visual C# -> .NET Core -> コンソールアプリ (.NET Core) target framework は気にしない  
 これで .NET Core 2.0 の ConsoleApp ができる  
 プロジェクトのプロパティを見ると .NET Core 2.0 になってる  
@@ -60,6 +67,7 @@ namespace NetCoreSample.HelloWorld
 とりあえず実行してみる (Ctrl + F5)  
 
 ### bin の中を見てみる
+
 `bin/Debug/netcoreapp2.0`
 .NET Framework のビルドとちがって exe が生成されない。 dll のみ。  
 
@@ -80,6 +88,9 @@ None Include とか特別に指定するものだけ書く
 細かい指定とかは csproj を直接編集していろいろ指定できる  
 
 ## フレームワーク依存の展開 (Framework-dependent deployments)
+
+.NET Framework のデプロイと同じイメージ。  
+実行にはそのバージョンの .NET Core のランタイムがインストールされてないといけない。
 
 普通にビルド or publish  
 コマンドラインでは `dotnet publish`  
