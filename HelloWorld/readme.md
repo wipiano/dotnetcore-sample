@@ -52,45 +52,45 @@ namespace NetCoreSample.HelloWorld
 ```
 
 ### プロジェクトの作成
-新規作成 -> プロジェクト -> Visual C# -> .NET Core -> コンソールアプリ (.NET Core) target framework は気にしない
-これで .NET Core 2.0 の ConsoleApp ができる
-プロジェクトのプロパティを見ると .NET Core 2.0 になってる
+新規作成 -> プロジェクト -> Visual C# -> .NET Core -> コンソールアプリ (.NET Core) target framework は気にしない  
+これで .NET Core 2.0 の ConsoleApp ができる  
+プロジェクトのプロパティを見ると .NET Core 2.0 になってる  
 
-とりあえず実行してみる (Ctrl + F5)
+とりあえず実行してみる (Ctrl + F5)  
 
 ### bin の中を見てみる
 `bin/Debug/netcoreapp2.0`
-.NET Framework のビルドとちがって exe が生成されない。 dll のみ。
+.NET Framework のビルドとちがって exe が生成されない。 dll のみ。  
 
 ### dll を実行してみる
-この状態だと、実行するときは
-`dotnet NetCoreSample.HelloWorld.dll`
-で実行できる
-csproj 直接指定して ビルド→実行 もできる
-`dotnet run NetCoreSample.HelloWorld.csproj`
+この状態だと、実行するときは  
+`dotnet NetCoreSample.HelloWorld.dll`  
+で実行できる  
+csproj 直接指定して ビルド→実行 もできる  
+`dotnet run NetCoreSample.HelloWorld.csproj`  
 
 ### csproj のちがい
-csproj の中をみてみる (.NET Framework の旧形式との比較)
-とてもシンプル、Program.cs とかも含まれてない
-旧形式みたいにがんばって全部のファイル細かく書いていても、たいていデフォルトのまま使っちゃうので書かないことにした
-None Include とか特別に指定するものだけ書く
-`<Project Sdk="Microsoft.NET.Sdk">`
-とか書いてあると、 System.dll など基本的に必要な dll はすべて参照にはいる
-細かい指定とかは csproj を直接編集していろいろ指定できる
+csproj の中をみてみる (.NET Framework の旧形式との比較)  
+とてもシンプル、Program.cs とかも含まれてない  
+旧形式みたいにがんばって全部のファイル細かく書いていても、たいていデフォルトのまま使っちゃうので書かないことにした  
+None Include とか特別に指定するものだけ書く  
+`<Project Sdk="Microsoft.NET.Sdk">`  
+とか書いてあると、 System.dll など基本的に必要な dll はすべて参照にはいる  
+細かい指定とかは csproj を直接編集していろいろ指定できる  
 
 ## フレームワーク依存の展開 (Framework-dependent deployments)
 
 普通にビルド or publish  
-コマンドラインでは `dotnet publish`
+コマンドラインでは `dotnet publish`  
 
-作成した dll は `dotnet [dll名]` で実行可能
+作成した dll は `dotnet [dll名]` で実行可能  
 
 
 ## 単体で実行可能なファイルをつくる (Self-contained deployments)
 
 ### csproj の編集
 
-実行可能ファイルを作るには、プロジェクトファイルに RuntimeIndentifiers を追加する
+実行可能ファイルを作るには、プロジェクトファイルに RuntimeIndentifiers を追加する  
 https://docs.microsoft.com/ja-jp/dotnet/core/rid-catalog
 
 例:
@@ -103,24 +103,24 @@ https://docs.microsoft.com/ja-jp/dotnet/core/rid-catalog
 
 ### 発行
 
-とりあえず適当にプロファイル作って発行すると、その OS 向けの実行可能ファイル (.NET Core ランタイム非依存) ができる
-target 変えたければ Settings... をクリックして target runtime を変更
-(じつは OS だけじゃなくて target framework も複数かけちゃったりする)
+とりあえず適当にプロファイル作って発行すると、その OS 向けの実行可能ファイル (.NET Core ランタイム非依存) ができる  
+target 変えたければ Settings... をクリックして target runtime を変更  
+(じつは OS だけじゃなくて target framework も複数かけちゃったりする)  
 
-windows 向けの exe を実行してみるとちゃんと実行できることがわかる
-ubuntu むけ、 mac 向けも同様 (実行可能なバイナリができてる)
+windows 向けの exe を実行してみるとちゃんと実行できることがわかる  
+ubuntu むけ、 mac 向けも同様 (実行可能なバイナリができてる)  
 
 
 #### コマンドでの発行
 
-Visual Studio がなくても発行もビルドもできちゃう
-全部 dotnet コマンドでできる
+Visual Studio がなくても発行もビルドもできちゃう  
+全部 dotnet コマンドでできる  
 
 * nuget パッケージの復元: `dotnet restore`
 * ビルド: `dotnet build`
 * 発行: `dotnet publish -r win8-x64`
 
-コマンドで発行する場合は csproj に RuntimeIdentifiers の指定は不要
+コマンドで発行する場合は csproj に RuntimeIdentifiers の指定は不要  
 
 ## .NET Standard クラスライブラリの作成と利用
 
@@ -128,21 +128,21 @@ Visual Studio がなくても発行もビルドもできちゃう
 .NET Standard 1.x 系のときはリフレクションまわりの互換性などの問題があったが、 .NET Standard 2.0 で解消されてる  
 (ほんとうはリフレクションを Type クラスから分離して TypeInfo 経由のリフレクションにしたかった)  
 
-プロジェクト -> .NET Standard -> クラスライブラリ
+プロジェクト -> .NET Standard -> クラスライブラリ  
 
-(.NET Standard は API の定義しか提供しないのでクラスライブラリしかつくれない)
+(.NET Standard は API の定義しか提供しないのでクラスライブラリしかつくれない)  
 
 .NET Standard 2.0 は .NET Core 2.0 または .NET Framework 4.6.1 以上 で使用可能  
-使うときは普通にプロジェクト参照で
+使うときは普通にプロジェクト参照で  
 
 ### ためしに MessagePack でいろいろするライブラリをつくってみる
 
 nuget で `MessagePack`, `MessagepackAnalyzer` をいれる  
-MessagePack は .NET Standard 対応済み
+MessagePack は .NET Standard 対応済み  
 
 #### ライブラリ側 
 
-.NET Standard 2.0 でつくる
+.NET Standard 2.0 でつくる  
 
 ```csharp
 using System;
